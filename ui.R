@@ -1,14 +1,16 @@
 source("server.R")
 
+
 ui <- fluidPage(
-  titlePanel("Child Mortality Rates")
-  
+  titlePanel("Child Mortality Rates"),
   sidebarLayout(
     sidebarPanel(
-      selectInput("country","Country",)
+      selectInput("country","Country",cleaned.data$countries)
+    ),
+    mainPanel(
+      plotlyOutput("plot1")
     )
   )
-  
 )
 
 shinyApp(ui,server)
