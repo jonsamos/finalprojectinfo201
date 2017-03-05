@@ -11,8 +11,7 @@ cleaned.data <- data.frame(countries.iso,countries,countries.m,countries.f,count
 cleaned.data <- mutate(cleaned.data,avg.1990=((m1990+f1990)/2),avg.2000=((m2000+f2000)/2),avg.2010=((m2010+f2010)/2),avg.2015=((m2015+f2015)/2))
 
 measles.data <- read.csv("measles/WHS8_110.csv")
-View(measles.data)
-cols[c(1,2,3)]
 cols <- colnames(measles.data)
-data2 <- measles.data[,cols[c(1,2,7,17,27)]]
-colnames(data2)
+measles.data <- measles.data[,cols[c(1,2,7,17,27)]]
+colnames(measles.data)<- c("Country","2015","2010","2000","1990")
+measles.data <- measles.data[2:195,]
