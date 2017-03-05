@@ -26,4 +26,4 @@ ui <- fluidPage(
   )
 )
 
-shinyApp(ui,server)
+shinyApp(ui,server, options=list(height=1080))
