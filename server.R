@@ -20,15 +20,14 @@ server<- function(input,output){
     world <- map_data("world")
     world <- mutate (world, ISO3 = iso.alpha(region, n = 3))
     world <- world[world$region != "Antarctica",]
-    cleaned.data <- cleaned.data[ ,c("countries.iso", "countries", input$year)]
     world <- left_join (world, cleaned.data, by = c("ISO3" = "countries.iso"))
     return(world)
   })
   
   output$map <- renderPlot ({
   ggplot() + 
-      geom_map(data = mapData(), map = world, aes_string(x = "long", y = "lat", map_id = "region", fill = input$year)) +
-      scale_fill_gradient(low = "green", high = "red", limits=c(0,332))+
+      geom_map(data=mapData(), map=mapData(), aes_string(x = "long", y = "lat", map_id="region", fill=input$year)) +
+      scale_fill_gradient2(low = "green", mid="yellow", high = "red", na.value="white",limits=c(0,332))+
       theme(panel.background = element_rect(color = "black", fill = "white"))+
       labs (x = "", y = "") + 
       theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank()) + 
@@ -36,8 +35,8 @@ server<- function(input,output){
     
   })
   output$plot1 <- renderPlotly({
-    plot_ly(selectedData(),x=year,type="scatter",y=m.data,name="Male",mode="lines+Markers")%>%
-      add_trace(y= ~f.data,name="Female")%>%
+    plot_ly(selectedData(),x=selectedData()$year,type="scatter",y=selectedData()$m.data,name="Male",mode="lines+Markers")%>%
+      add_trace(y=selectedData()$f.data,name="Female")%>%
       layout(title="Male and Female U5 Mortality Rate",
              xaxis=list(title="Year"),
              yaxis=list(title="Mortality Rates"))
