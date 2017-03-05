@@ -1,17 +1,16 @@
 library(dplyr)
 
-data <- read.csv("data/Sex-specific U5MR estimates-Table 1.csv")
-colnames(data)
-typeof(data)
+data <- read.csv("data/Sex-specific U5MR estimates-Table 1.csv",stringsAsFactors = FALSE)
 countries <- unique(data$X[8:592])
-countries
-data$X.6
-countries.male <- list("1990"=data$X.2[8:592],"2000"=data$X.3[8:592],"2010"=data$X.3[8:592],"2015"=data$X.3[8:592])
-countries.femmale<- list("1990"=data$X.6[8:592],"2000"=data$X.7[8:592],"2010"=data$X.8[8:592],"2015"=data$X.9[8:592])
-countries.sexratio <- list("1990"=data$X.10[8:592],"2000"=data$X.11[8:592],"2010"=data$X.12[8:592],"2015"=data$X.13[8:592])
-unique(data$X[8:592])
-countries.lower.male <- c(data$X.2[8:592][seq(1,584,3)],data$X.3[8:592][seq(1,584,3)],data$X.4[8:592])
-k <- c(1,2,3,4,5)
-k[seq(1,6,2)]
-typeof(countries.male["1990"])
-countries.male$"1990"
+countries.male <- list("male1990"=data$X.2[8:592][seq(2,584,3)],"male2000"=data$X.3[8:592][seq(2,584,3)],"male2010"=data$X.3[8:592][seq(2,584,3)],"male2015"=data$X.3[8:592][seq(2,584,3)])
+countries.female<- list("female1990"=data$X.6[8:592][seq(2,584,3)],"female2000"=data$X.7[8:592][seq(2,584,3)],"female2010"=data$X.8[8:592][seq(2,584,3)],"female2015"=data$X.9[8:592][seq(2,584,3)])
+countries.sexratio <- list("sexratio1990"=data$X.10[8:592][seq(2,584,3)],"sexratio2000"=data$X.11[8:592][seq(2,584,3)],"sexratio2010"=data$X.12[8:592][seq(2,584,3)],"sexratio2015"=data$X.13[8:592][seq(2,584,3)])
+countries.iso <- data$Child.Mortality.Estimates[8:592][seq(2,584,3)]
+
+cleaned.data <- data.frame(countries.iso,countries,countries.male,countries.female,countries.sexratio)
+View(cleaned.data)
+cleaned.data1 <- mutate(cleaned.data,avg.1990=(female1990),avg.2000=((male2000+female2000)/2),avg.2010=((male2010+female2010)/2),avg.2015=((male2015+female2015)/2))
+View(cleaned.data1)
+countries.male$"1990"=="NA"
+print(countries.female$female1990=="NA")
+View(cleaned.data$male1990+cleaned.data$female1990)
