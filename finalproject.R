@@ -15,3 +15,9 @@ cols <- colnames(measles.data)
 measles.data <- measles.data[,cols[c(1,2,7,17,27)]]
 colnames(measles.data)<- c("Country","2015","2010","2000","1990")
 measles.data <- measles.data[2:195,]
+
+dpt.data <- read.csv("dpt/WHS4_100.csv")
+cols <- colnames(dpt.data)
+dpt.data <- dpt.data[,cols[c(1,2,7,17,27)]]
+colnames(dpt.data) <- c("Country","2015","2010","2000","1990")
+dpt.data <- dpt.data[2:195,]
