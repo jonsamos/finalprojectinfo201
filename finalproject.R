@@ -9,3 +9,5 @@ countries.iso <- data$Child.Mortality.Estimates[8:592][seq(2,584,3)]
 
 cleaned.data <- data.frame(countries.iso,countries,countries.male,countries.female,countries.sexratio)
 cleaned.data <- mutate(cleaned.data,avg.1990=((male1990+female1990)/2),avg.2000=((male2000+female2000)/2),avg.2010=((male2010+female2010)/2),avg.2015=((male2015+female2015)/2))
+
+
