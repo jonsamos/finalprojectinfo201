@@ -10,4 +10,9 @@ countries.iso <- data$Child.Mortality.Estimates[8:592][seq(2,584,3)]
 cleaned.data <- data.frame(countries.iso,countries,countries.m,countries.f,countries.sexratio)
 cleaned.data <- mutate(cleaned.data,avg.1990=((m1990+f1990)/2),avg.2000=((m2000+f2000)/2),avg.2010=((m2010+f2010)/2),avg.2015=((m2015+f2015)/2))
 
-
+measles.data <- read.csv("measles/WHS8_110.csv")
+View(measles.data)
+cols[c(1,2,3)]
+cols <- colnames(measles.data)
+data2 <- measles.data[,cols[c(1,2,7,17,27)]]
+colnames(data2)
