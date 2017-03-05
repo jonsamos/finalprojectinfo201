@@ -4,17 +4,16 @@ source("finalproject.R")
 library(dplyr)
 library(ggplot2)
 library(plotly)
-
-source("finalproject.R")
+library(maps)
 
 
 server<- function(input,output){
   selectedData <- reactive({
     year <- c("1990","2000","2010","2015")
     country.specific<-filter(cleaned.data,countries==input$country)
-    male.data <- c(country.specific$"male1990",country.specific$"male2000",country.specific$"male2010",country.specific$"male2015")
-    female.data <- c(country.specific$"female1990",country.specific$"female2000",country.specific$'female2010',country.specific$"female2015")
-    return(data.frame(year,male.data,female.data))
+    m.data <- c(country.specific$"m1990",country.specific$"m2000",country.specific$"m2010",country.specific$"m2015")
+    f.data <- c(country.specific$"f1990",country.specific$"f2000",country.specific$'f2010',country.specific$"f2015")
+    return(data.frame(year,m.data,f.data))
   })
   
   mapData <- reactive ({
@@ -28,8 +27,8 @@ server<- function(input,output){
   
   output$map <- renderPlot ({
   ggplot() + 
-      geom_map(data = world, map = world, aes_string(x = "long", y = "lat", map_id = "region", fill = input$year)) +
-      scale_fill_gradient(low = "green", high = "red")+
+      geom_map(data = mapData(), map = world, aes_string(x = "long", y = "lat", map_id = "region", fill = input$year)) +
+      scale_fill_gradient(low = "green", high = "red", limits=c(0,332))+
       theme(panel.background = element_rect(color = "black", fill = "white"))+
       labs (x = "", y = "") + 
       theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank()) + 
@@ -37,8 +36,8 @@ server<- function(input,output){
     
   })
   output$plot1 <- renderPlotly({
-    plot_ly(selectedData(),x=year,type="scatter",y=male.data,name="Male",mode="lines+Markers")%>%
-      add_trace(y= ~female.data,name="Female")%>%
+    plot_ly(selectedData(),x=year,type="scatter",y=m.data,name="Male",mode="lines+Markers")%>%
+      add_trace(y= ~f.data,name="Female")%>%
       layout(title="Male and Female U5 Mortality Rate",
              xaxis=list(title="Year"),
              yaxis=list(title="Mortality Rates"))
@@ -47,7 +46,7 @@ server<- function(input,output){
   
   observeEvent(input$generate, {
     print(input$country2)
-    rate <- cleaned.data[[paste0(input$gender, input$yearRandom)]][min(which(countries == input$country2))]
+    rate <- cleaned.data[[paste0(substr(input$gender, 1, 1), input$yearRandom)]][min(which(countries == input$country2))]
     output$result <- renderPrint(rate)
     random <- runif(1, 1, 1000)
     if (random > rate) {
