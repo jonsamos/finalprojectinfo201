@@ -14,7 +14,7 @@ ui <- fluidPage(
   
   
  
-  selectInput("year", "Select a year for the map.", choices = c("avg.1990", "avg.2000", "avg.2010", "avg.2015"), selected = "avg.1990"),
+  selectInput("year", "Select a year for the map.", choices = c("1990", "2000", "2010", "2015"), selected = "1990"),
   plotOutput ("map"),
   sidebarLayout(
     sidebarPanel(
