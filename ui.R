@@ -3,17 +3,8 @@ source("server.R")
 
 ui <- fluidPage(
   titlePanel("Child Mortality Rates"),
-<<<<<<< HEAD
-  
-  sidebarLayout(
-    sidebarPanel(
-      selectInput("country","Country", choices=countries)
-    ),
-    mainPanel()
-  ),
-  
+
   #Random part  
-  
   
   selectInput("gender","Gender", choices=list("male", "female")),
   selectInput("country2","Country", choices=countries),
