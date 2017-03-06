@@ -54,4 +54,13 @@ server<- function(input,output){
       output$result <- renderPrint("No, you have died before the age of five.")
     }
   })
+  
+  output$measles <- renderPlot({
+    measles <- ggplot(data=measles.mort, mapping=aes(x=measles, y=mort)) + geom_point() + facet_wrap(~year)
+    return(measles)
+  })
+  output$dpt <- renderPlot({
+    dpt <- ggplot(data=dpt.mort, mapping=aes(x=dpt, y=mort)) + geom_point() + facet_wrap(~year)
+    return(dpt)
+  })
 }
