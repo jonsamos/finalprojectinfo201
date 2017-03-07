@@ -26,7 +26,7 @@ map <- ggplot() +
 by almost half since 1990, the world still has a long way to go in reducing the rate of child
 mortality. However, two thirds of child deaths are preventable. By giving children vaccines, oral rehydration
 therapy, and improved education in developing countries. Our goal is to bring awareness to child mortality
-and give you the tools to help stop"
+and what you can do to help stop it."
 
 
 
