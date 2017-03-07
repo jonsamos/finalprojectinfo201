@@ -1,5 +1,6 @@
 library(ggplot2)
 library(dplyr)
+library(readr)
 #load data sets
 
 infant.mortality <- read.csv("infantmortality.csv")
@@ -20,4 +21,12 @@ map <- ggplot() +
        labs (x = "", y = "") + 
        theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank()) + 
        theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())
+
+"Every day, twenty-one children under the age of five die each minute. Although this number has decreased 
+by almost half since 1990, the world still has a long way to go in reducing the rate of child
+mortality. However, two thirds of child deaths are preventable. By giving children vaccines, oral rehydration
+therapy, and improved education in developing countries. Our goal is to bring awareness to child mortality
+and what you can do to help stop it."
+
+
 
