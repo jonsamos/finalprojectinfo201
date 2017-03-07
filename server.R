@@ -56,11 +56,11 @@ server<- function(input,output){
   })
   
   output$measles <- renderPlot({
-    measles <- ggplot(data=measles.mort, mapping=aes(x=measles, y=mort)) + geom_point() + facet_wrap(~year)
+    measles <- ggplot(data=measles.mort, mapping=aes(x=measles, y=mort)) + geom_point() + facet_wrap(~year) + geom_smooth()
     return(measles)
   })
   output$dpt <- renderPlot({
-    dpt <- ggplot(data=dpt.mort, mapping=aes(x=dpt, y=mort)) + geom_point() + facet_wrap(~year)
+    dpt <- ggplot(data=dpt.mort, mapping=aes(x=dpt, y=mort)) + geom_point() + facet_wrap(~year) + geom_smooth()
     return(dpt)
   })
 }
