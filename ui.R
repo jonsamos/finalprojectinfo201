@@ -2,7 +2,11 @@ source("server.R")
 
 ui <- fluidPage(
   titlePanel("Child Mortality Rates"),
-
+  h4("Every day, twenty-one children under the age of five die each minute. Although this number has decreased 
+    by almost half since 1990, the world still has a long way to go in reducing the rate of child
+    mortality. However, two thirds of child deaths are preventable. By giving children vaccines, oral rehydration
+    therapy, and improved education in developing countries. Our goal is to bring awareness to child mortality
+    and what you can do to help stop it."),
   
   
   #Random part  
