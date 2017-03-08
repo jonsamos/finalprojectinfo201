@@ -27,7 +27,7 @@ server<- function(input,output){
   output$map <- renderPlot ({
   ggplot() + 
       geom_map(data=mapData(), map=mapData(), aes_string(x = "long", y = "lat", map_id="region", fill=paste0("avg.", input$year))) +
-      scale_fill_gradient2(low = "green", mid="yellow", high = "red", na.value="white",limits=c(0,332))+
+      scale_fill_gradient2(low = "green", mid="yellow", high = "red", na.value="white",limits=c(0,332), name = "Child deaths out of 1000")+
       theme(panel.background = element_rect(color = "black", fill = "white"))+
       labs (x = "", y = "") + 
       theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank()) + 
