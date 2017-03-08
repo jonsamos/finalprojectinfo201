@@ -12,10 +12,11 @@ ui <- fluidPage(
   #Random part  
   sidebarLayout(
     sidebarPanel(
-      selectInput("gender","Gender", choices=list("male", "female")),
+      selectInput("gender","Gender", choices=list("Male", "Female")),
       selectInput("country2", "Country", choices=countries),
       selectInput("yearRandom", "Year", choices=list(1990,2000,2010,2015))
     ), mainPanel(
+      p("This simulator will randomly generate, based on the probability of the information to the left, whether a child born will survive past the age of five."),
       actionButton("generate", "Will you live past the age of five?"),
       textOutput("result")
     )
