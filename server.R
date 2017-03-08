@@ -44,14 +44,14 @@ server<- function(input,output){
   
   
   observeEvent(input$generate, {
-    print(input$country2)
-    rate <- cleaned.data[[paste0(substr(input$gender, 1, 1), input$yearRandom)]][min(which(countries == input$country2))]
+    gender <- input$gender %>% tolower() %>% substr(1, 1)
+    rate <- cleaned.data[[paste0(gender, input$yearRandom)]][min(which(countries == input$country2))]
     output$result <- renderPrint(rate)
     random <- runif(1, 1, 1000)
     if (random > rate) {
-      output$result <- renderPrint("Yes, you have survived past the age of five.")
+      output$result <- renderText("Yes, you have survived past the age of five.")
     } else {
-      output$result <- renderPrint("No, you have died before the age of five.")
+      output$result <- renderText("No, you have died before the age of five.")
     }
   })
   
