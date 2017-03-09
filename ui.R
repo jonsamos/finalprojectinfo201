@@ -6,8 +6,8 @@ ui = fluidPage(theme=shinytheme("superhero"),
   h4("Every day, twenty-one children under the age of five die each minute. Although this number has decreased 
     by almost half since 1990, the world still has a long way to go in reducing the rate of child
     mortality. However, two thirds of child deaths are preventable. By giving children vaccines, oral rehydration
-    therapy, and improved education in developing countries. Our goal is to bring awareness to child mortality
-    and what you can do to help prevent the deaths of children throughout the world."),
+    therapy, and improved education in developing countries, many children would be saved at a low cost. Our goal is 
+    to bring awareness to child mortality and what you can do to help prevent the deaths of children throughout the world."),
   
   #Random part  
   sidebarLayout(
@@ -30,21 +30,21 @@ ui = fluidPage(theme=shinytheme("superhero"),
 
   plotOutput ("map"),
   h5("This world map shows the child mortality rate per country in a given year. In 1990, some countries
-     had under five child deaths reach numbers as high as 332 per every 1000 children. However, 
+     had u5 child deaths reach numbers as high as 332 per every 1000 children. However, 
      as the year of the map gets closer to the present, one can see that child mortality overall
      decreases by a substantial amount."),
   
   
   
- 
-  h5("These scatter plots show the relationship between Measles/DPT vaccines and mortality rates in each country,
-     faceted by the years 1990, 2000, and 2010. There is a general trend that shows that in countries that have higher
-     vaccine rates, the mortality rate is lower, and countries with a lower vaccine rate have a higher mortality rate. The high 
-     concentration of countries in the lower right hand corner of each graph could be developed countries, 
-     where citizens are more likely to have access to these vaccines and other solutions to child mortality."),
 
 
- 
+
+  h4("Data shows that access to immunizations lead to fewer U5 child deaths. This is one reason why child mortality
+     is steadily decreasing, as more infants are immunized now than ever before. According to PRB, or the
+     Population Reference Bureau, 106 million infants were immunized in 2008. In recent years, developing countries have 
+     seen a growth of manufactures of vaccines, allowing for better and easier immunization coverage in these countries.
+     However, the availability of these vaccines in developing countries is still much lower than the availability in developed countries.
+     UNICEF has stated that with 1 billion dollars, vaccines could be available for all children in the 72 poorest countries."),
      
 
   plotlyOutput("scatter3d", height=700, width="100%"),
@@ -55,25 +55,33 @@ ui = fluidPage(theme=shinytheme("superhero"),
   
   plotOutput("measles"), 
   plotOutput("dpt"),
-  h5("Data shows that access to immunizations lead to fewer under 5 child deaths. This is one reason why child mortality
-     is steadily decreasing, as more infants are immunized now than ever before. According to PRB, or the
-     Population Reference Bureau, 106 million infants were immunized in 2008. In recent years, developing countries have 
-     seen a growth of manufactures of vaccines, allowing for better and easier immunization coverage in these countries.
-     However, the availability of these vaccines in developing countries is still much lower than the availability in developed countries.
-     UNICEF has stated that with 1 billion dollars, vaccines could be available for all children in the 72 poorest countries."),
+  
+  h5("These scatter plots show the relationship between Measles/DPT vaccines, mortality rates, and income in each country,
+     from the year 1990 to the year 2015. There is a general trend that shows that in countries that have higher
+     vaccine rates, the mortality rate is lower, and countries with a lower vaccine rate have a higher mortality rate. Also, countries 
+     have a higher income are mostly at the point on the graph where there is a high vaccine rate and a low mortality rate.
+     The high concentration of countries in the lower right hand corner of each graph could be developed countries, 
+     where citizens are more likely to have access to these vaccines and other solutions to child mortality."),
   h2("Conclusion"),
   h4("While child mortality rates have decreased tremendously in the last 25 years, there is more work 
   to be done. Many of these deaths could be completely preventable if the family and community of these
   children were given the proper resources. Organizations like World Vision and UNICEF seek to help end child mortality
   by working with communities to improve the resources governments give to families and hoispitals, as well as
-  educating families  to be aware of the signs of diseases and how to prevent them altogether."
-  )
+  educating families  to be aware of the signs of diseases and how to prevent them altogether. If you feel compelled to
+  donate to UNICEF to help end child mortality due to preventable causes, please click the link below."),
+  h4(a("Donate here", href="https://www.unicefusa.org/donate/help-save-childrens-lives/29161")),
+  
+  p("Sources:"),
+  a("http://childmortality.org/", href="http://childmortality.org/"),
+  p(),
+  a("http://www.who.int/mediacentre/factsheets/fs286/en/", href="http://www.who.int/mediacentre/factsheets/fs286/en/"),
+  p(),
+  a("http://www.prb.org/Publications/Articles/2009/childmortality.aspx", href="http://www.prb.org/Publications/Articles/2009/childmortality.aspx"),
+  p(),
+  a("http://www.who.int/mediacentre/factsheets/fs178/en/", href="http://www.who.int/mediacentre/factsheets/fs178/en/")
   
 )
 
-<<<<<<< HEAD
-shinyApp(ui,server, options=list(height=3500))
-=======
+shinyApp(ui,server, options=list(height=3600))
 
-shinyApp(ui,server, options=list(height=3000))
->>>>>>> master
+
