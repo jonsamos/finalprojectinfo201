@@ -56,3 +56,7 @@ Population Reference Bureau, 106 million infants were immunized in 2008. In rece
 seen a growth of manufactures of vaccines, allowing for better and easier immunization coverage in these countries.
 However, the availability of these vaccines in developing countries is still much lower than the availability in developed countries.
 UNICEF has stated that with 1 billion dollars, vaccines could be available for all children in the 72 poorest countries."
+
+
+#http://www.prb.org/Publications/Articles/2009/childmortality.aspx
+#http://www.who.int/mediacentre/factsheets/fs178/en/

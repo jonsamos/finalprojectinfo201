@@ -73,7 +73,15 @@ server<- function(input,output){
     return(dpt)
   })
   output$scatter3d <- renderPlotly({
-    plot_ly(scatterData(),x= scatterData()$dpt,y= scatterData()$measles,z= scatterData()$mort,color=scatterData()$gdp)%>%
+    plot_ly(scatterData(),x= scatterData()$dpt,y= scatterData()$measles,z= scatterData()$mort,color=scatterData()$gdp, colors = c('#fff7fb',
+      '#ece2f0',
+      '#d0d1e6',
+      '#a6bddb',
+      '#67a9cf',
+      '#3690c0',
+      '#02818a',
+      '#016c59',
+      '#014636'))%>%
       add_markers()%>%
       layout(scene=list(xaxis=list(title="DPT"),
                         yaxis = list(title="Measles"),
