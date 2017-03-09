@@ -54,7 +54,7 @@ server<- function(input,output){
   output$map <- renderPlot ({
   ggplot() + 
       geom_map(data=mapData(), map=mapData(), aes_string(x = "long", y = "lat", map_id="region", fill=paste0("avg.", input$year2))) +
-      scale_fill_gradient2(low = "green", mid="yellow", high = "red", na.value="white",limits=c(0,332), name = "Child deaths out of 1000")+
+      scale_fill_gradient2(low = "green", mid="yellow", high = "red", na.value="white",limits=c(0,332), name = "U5 deaths out of 1000")+
       theme(panel.background = element_rect(color = "black", fill = "white"))+
       labs (x = "", y = "") + 
       theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank()) + 
@@ -70,11 +70,13 @@ server<- function(input,output){
  
   
   output$dpt <- renderPlot({
-    dpt <- ggplot(data=scatterData(), mapping=aes(x=dpt, y=mort)) + geom_point(mapping=aes(color=gdp)) + geom_smooth()
+    dpt <- ggplot(data=scatterData(), mapping=aes(x=dpt, y=mort)) + geom_point(mapping=aes(color=gdp)) + geom_smooth() + 
+    labs(title = "Mortality rate vs DPT Vaccination", x = "DPT Vaccination %", y = "Mortality Rate" )
     return(dpt)
   })
   output$measles <- renderPlot({
-    measles <- ggplot(data=scatterData(), mapping=aes(x=measles, y=mort)) + geom_point(mapping=aes(color=gdp)) + geom_smooth()
+    measles <- ggplot(data=scatterData(), mapping=aes(x=measles, y=mort)) + geom_point(mapping=aes(color=gdp)) + geom_smooth() +
+    labs(title = "Mortality Rate vs Measles Vaccination", x = "Measles Vaccination %", y = "Mortality Rate")  
     return(measles)
   })
   
