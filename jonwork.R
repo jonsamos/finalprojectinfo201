@@ -44,3 +44,8 @@ by working with communities to improve the resources governments give to familie
 educating families  to be aware of the signs of diseases and how to prevent them altogether."
 
 
+"These six scatter plots show the relationship between Measles/DPT vaccines and mortality rates in each country,
+faceted by the years 1990, 2000, and 2010.There is a general trend that shows that in countries that have higher
+vaccine rates, the mortality rate is lower, and countries with a lower vaccine rate have a higher mortality rate. The high 
+concentration of countries in the lower right hand corner of each graph could be developed countries, 
+where citizens are more likely to have access to these vaccines and other solutions to child mortality."
