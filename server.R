@@ -8,13 +8,30 @@ library(maps)
 
 
 server<- function(input,output){
+  
+  output$result <- renderText({
+    if(input$gender == "Either"){
+      gender <- ""
+      col <- paste0("avg.", input$year2)
+    } else {
+      gender <-tolower(input$gender)
+      col <- paste0((substr(gender, 1, 1)), input$year2)
+    }
+    rate <- cleaned.data[[col]][min(which(countries == input$country2))]
+    total = round(1000*(1/rate))
+    result <- paste0("For every ",total," ",gender," children born in ",input$country2," in ",input$year2,", one did not live past the age of five.")
+    return(result)
+  })
+  
   selectedData <- reactive({
     year <- c("1990","2000","2010","2015")
-    country.specific<-filter(cleaned.data,countries==input$country)
+    country.specific<-filter(cleaned.data,countries==input$country2)
     m.data <- c(country.specific$"m1990",country.specific$"m2000",country.specific$"m2010",country.specific$"m2015")
     f.data <- c(country.specific$"f1990",country.specific$"f2000",country.specific$'f2010',country.specific$"f2015")
     return(data.frame(year,m.data,f.data))
   })
+  
+  
   
   scatterData <- reactive({
     return(scatter.plot)
@@ -27,10 +44,10 @@ server<- function(input,output){
     world <- left_join (world, cleaned.data, by = c("ISO3" = "countries.iso"))
     return(world)
   })
-  
+
   output$map <- renderPlot ({
   ggplot() + 
-      geom_map(data=mapData(), map=mapData(), aes_string(x = "long", y = "lat", map_id="region", fill=paste0("avg.", input$year))) +
+      geom_map(data=mapData(), map=mapData(), aes_string(x = "long", y = "lat", map_id="region", fill=paste0("avg.", input$year2))) +
       scale_fill_gradient2(low = "green", mid="yellow", high = "red", na.value="white",limits=c(0,332), name = "Child deaths out of 1000")+
       theme(panel.background = element_rect(color = "black", fill = "white"))+
       labs (x = "", y = "") + 
@@ -39,25 +56,13 @@ server<- function(input,output){
   })
   
   output$plot1 <- renderPlotly({
-    plot_ly(selectedData(),x=selectedData()$year,type="scatter",y=selectedData()$m.data,name="Male",mode="lines+Markers")%>%
+    plot_ly(selectedData(),x=selectedData()$year2,type="scatter",y=selectedData()$m.data,name="Male",mode="lines+Markers")%>%
       add_trace(y=selectedData()$f.data,name="Female")%>%
-      layout(title="Male and Female U5 Mortality Rate",
-             xaxis=list(title="Year"),
+      layout(xaxis=list(title="Year"),
              yaxis=list(title="Mortality Rates"))
   })
   
-  
-  observeEvent(input$generate, {
-    gender <- input$gender %>% tolower() %>% substr(1, 1)
-    rate <- cleaned.data[[paste0(gender, input$yearRandom)]][min(which(countries == input$country2))]
-    output$result <- renderPrint(rate)
-    random <- runif(1, 1, 1000)
-    if (random > rate) {
-      output$result <- renderText("Yes, you have survived past the age of five.")
-    } else {
-      output$result <- renderText("No, you have died before the age of five.")
-    }
-  })
+ 
   
   output$measles <- renderPlot({
     measles <- ggplot(data=measles.mort, mapping=aes(x=measles, y=mort)) + geom_point() + facet_wrap(~year) + geom_smooth()
