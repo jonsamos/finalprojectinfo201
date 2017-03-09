@@ -47,20 +47,20 @@ ui <- fluidPage(theme = shinytheme("superhero"),
      vaccine rates, the mortality rate is lower, and countries with a lower vaccine rate have a higher mortality rate. The high 
      concentration of countries in the lower right hand corner of each graph could be developed countries, 
      where citizens are more likely to have access to these vaccines and other solutions to child mortality."),
-  plotlyOutput("scatter3d"),
-  h4("While child mortality rates have decreased tremendously in the last 25 years, there is more work 
-     to be done. Many of these deaths could be completely preventable if the family and community of these
-     children were given the proper resources. Organizations like World Vision and UNICEF seek to help end child mortality
-     by working with communities to improve the resources governments give to families and hoispitals, as well as
-     educating families  to be aware of the signs of diseases and how to prevent them altogether. If you feel compelled to donate
-     to this cause, please click the link below."),
-     a("Donate here", href="https://www.unicefusa.org/donate/help-save-childrens-lives/29161"),
-     p("Sources:"),
-     p("http://childmortality.org/"),
-     p("http://www.who.int/mediacentre/factsheets/fs286/en/"),
-     p( "http://www.prb.org/Publications/Articles/2009/childmortality.aspx"),
-     p( "http://www.who.int/mediacentre/factsheets/fs178/en/")
+
+
+ 
      
+
+  plotlyOutput("scatter3d", height=700, width="100%"),
+  sliderInput("slider", label="Year", min=1990, max=2015, value=1990)
+  #h4("While child mortality rates have decreased tremendously in the last 25 years, there is more work 
+   #  to be done. Many of these deaths could be completely preventable if the family and community of these
+    # children were given the proper resources. Organizations like World Vision and UNICEF seek to help end child mortality
+     #by working with communities to improve the resources governments give to families and hoispitals, as well as
+    # educating families  to be aware of the signs of diseases and how to prevent them altogether."
+  #)
+  
 )
 
 
