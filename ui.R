@@ -35,7 +35,8 @@ ui <- fluidPage(
   
   
   plotOutput("measles"),
-  plotOutput("dpt")
+  plotOutput("dpt"),
+  plotlyOutput("scatter3d")
 )
 
 shinyApp(ui,server, options=list(height=2000))

@@ -16,6 +16,10 @@ server<- function(input,output){
     return(data.frame(year,m.data,f.data))
   })
   
+  scatterData <- reactive({
+    return(scatter.plot)
+  })
+  
   mapData <- reactive ({
     world <- map_data("world")
     world <- mutate (world, ISO3 = iso.alpha(region, n = 3))
@@ -63,4 +67,12 @@ server<- function(input,output){
     dpt <- ggplot(data=dpt.mort, mapping=aes(x=dpt, y=mort)) + geom_point() + facet_wrap(~year)
     return(dpt)
   })
+  output$scatter3d <- renderPlotly({
+    plot_ly(scatterData(),x= scatterData()$dpt,y= scatterData()$measles,z= scatterData()$mort)%>%
+      add_markers()%>%
+      layout(scene=list(xaxis=list(title="DPT"),
+                        yaxis = list(title="Measles"),
+                        zaxis = list(title="Rates")))
+  })
+  
 }
