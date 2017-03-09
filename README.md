@@ -1,1 +1,3 @@
-# finalprojectinfo201
+# Child Mortality Presentation
+
+Our Shiny app analyzes a dataset of child mortality rates for each country from the years 1990, 2000, 2010, and 2015. The app uses interactivity to allow the user to explore the data in their own way. We also use datasets of vaccine use and income of countries. We make the conclusion that vaccine use results in lower mortality rate, which we show by providing different kinds of plots. We made this presentation to bring awareness to this issue and show the audience what they can do to help. To change the plots, use the different user input prompts on the left side of the page, and follow instructions.
