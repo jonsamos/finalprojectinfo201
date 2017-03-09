@@ -36,3 +36,9 @@ decreases by a substantial amount."
 "These line graphs show the child mortality rates for females and males in a given country throughout
 the last 25 years. Each country has a general trend of a decline in deaths from 1990 to 2015,
 which could be caused by increased vaccinations and treatment for pneumonia, among other factors."
+
+"While the child mortality rates have decreased tremendously in the last 25 years, there is more work 
+to be done. Many of these deaths could be completely preventable if the family and community of these
+children were given the proper resources. Organizations like World Vision and UNICEF seek to help end child mortality
+by working with communities to improve the resources governments give to families and hoispitals, as well as
+educating families  to be aware of the signs of diseases and how to prevent them altogether."
