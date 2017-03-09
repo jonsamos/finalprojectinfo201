@@ -1,5 +1,6 @@
 source("server.R")
 
+
 ui = fluidPage(theme=shinytheme("superhero"),
   titlePanel("Child Mortality Rates"),
   h4("Every day, twenty-one children under the age of five die each minute. Although this number has decreased 
@@ -41,6 +42,11 @@ ui = fluidPage(theme=shinytheme("superhero"),
      vaccine rates, the mortality rate is lower, and countries with a lower vaccine rate have a higher mortality rate. The high 
      concentration of countries in the lower right hand corner of each graph could be developed countries, 
      where citizens are more likely to have access to these vaccines and other solutions to child mortality."),
+
+
+ 
+     
+
   plotlyOutput("scatter3d", height=700, width="100%"),
   checkboxInput("showall","Show All?",value=TRUE),
   sliderInput("slider", label="Year", min=1990, max=2015, value=1990),
@@ -65,4 +71,9 @@ ui = fluidPage(theme=shinytheme("superhero"),
   
 )
 
+<<<<<<< HEAD
 shinyApp(ui,server, options=list(height=3500))
+=======
+
+shinyApp(ui,server, options=list(height=3000))
+>>>>>>> master

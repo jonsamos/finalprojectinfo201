@@ -79,6 +79,7 @@ server<- function(input,output){
   })
   
   output$scatter3d <- renderPlotly({
+
     plot_ly(scatterData(),x= (scatterData()$dpt*10),y= (scatterData()$measles*10),z= (scatterData()$mort/10), size=I(2),
         color=(scatterData()$gdp)^(1/10))%>%
       add_markers()%>%
