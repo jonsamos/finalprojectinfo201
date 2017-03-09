@@ -34,7 +34,13 @@ server<- function(input,output){
   
   
   scatterData <- reactive({
-    return(scatter.plot)
+
+    if(input$showall){
+      return(scatter.plot)
+    }else{
+      return(scatter.plot %>% filter(year==paste0("X", input$slider)))
+    }
+
   })
   
   mapData <- reactive ({
@@ -80,9 +86,9 @@ server<- function(input,output){
         color=(scatterData()$gdp)^(1/10))%>%
       add_markers()%>%
       layout(scene=list(
-        xaxis = list(title="DPT", width=I(3)),
-        yaxis = list(title="Measles", width=90),
-        zaxis = list(title="Rates"))
+        xaxis = list(title="DPT(out of 1000)", width=I(3)),
+        yaxis = list(title="Measles(out of 1000)", width=90),
+        zaxis = list(title="Rates(out of 10)"))
       ) %>% hide_colorbar()
   })
 }

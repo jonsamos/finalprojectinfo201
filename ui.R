@@ -55,6 +55,7 @@ ui <- fluidPage(
      concentration of countries in the lower right hand corner of each graph could be developed countries, 
      where citizens are more likely to have access to these vaccines and other solutions to child mortality."),
   plotlyOutput("scatter3d", height=700, width="100%"),
+  checkboxInput("showall","Show All?",value=TRUE),
   sliderInput("slider", label="Year", min=1990, max=2015, value=1990)
   #h4("While child mortality rates have decreased tremendously in the last 25 years, there is more work 
    #  to be done. Many of these deaths could be completely preventable if the family and community of these
