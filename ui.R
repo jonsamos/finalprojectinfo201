@@ -52,9 +52,16 @@ ui <- fluidPage(
      to be done. Many of these deaths could be completely preventable if the family and community of these
      children were given the proper resources. Organizations like World Vision and UNICEF seek to help end child mortality
      by working with communities to improve the resources governments give to families and hoispitals, as well as
-     educating families  to be aware of the signs of diseases and how to prevent them altogether."
-  )
-  
+     educating families  to be aware of the signs of diseases and how to prevent them altogether. If you feel compelled to donate
+     to this cause, please click the link below."),
+     a("Donate here", href="https://www.unicefusa.org/donate/help-save-childrens-lives/29161"),
+     p("Sources:"),
+     p("http://childmortality.org/"),
+     p("http://www.who.int/mediacentre/factsheets/fs286/en/"),
+     p( "http://www.prb.org/Publications/Articles/2009/childmortality.aspx"),
+     p( "http://www.who.int/mediacentre/factsheets/fs178/en/")
+     
 )
+
 
 shinyApp(ui,server, options=list(height=3000))
