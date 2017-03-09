@@ -36,8 +36,8 @@ server<- function(input,output){
       labs (x = "", y = "") + 
       theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank()) + 
       theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())
-    
   })
+  
   output$plot1 <- renderPlotly({
     plot_ly(selectedData(),x=selectedData()$year,type="scatter",y=selectedData()$m.data,name="Male",mode="lines+Markers")%>%
       add_trace(y=selectedData()$f.data,name="Female")%>%
@@ -68,7 +68,7 @@ server<- function(input,output){
     return(dpt)
   })
   output$scatter3d <- renderPlotly({
-    plot_ly(scatterData(),x= scatterData()$dpt,y= scatterData()$measles,z= scatterData()$mort)%>%
+    plot_ly(scatterData(),x= scatterData()$dpt,y= scatterData()$measles,z= scatterData()$mort,color=scatterData()$gdp)%>%
       add_markers()%>%
       layout(scene=list(xaxis=list(title="DPT"),
                         yaxis = list(title="Measles"),

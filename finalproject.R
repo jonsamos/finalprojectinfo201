@@ -35,8 +35,22 @@ dpt.mort <- dpt.mort %>% gather(key=year, value=dpt, x1990, x2000, x2010)
 dpt.mort <- dpt.mort %>% gather(key=year2, value=mort, avg.1990, avg.2000, avg.2010)
 dpt.mort <- dpt.mort %>% filter(!is.na(dpt)&!is.na(mort))
 
+country.wise.mort <- read.csv("mort_data/country_wise_mort.csv")
+country.wise.mort <- select(country.wise.mort,c(1,2,35:60))
+country.wise.mort <- gather(country.wise.mort,key=year,value=mort,c(3:28))%>%filter(!is.na(mort))
+colnames(country.wise.mort)<- c("Country","Code","year","mort")
 
+measles.data2 <- read.csv("measles/WHS8_110.csv")
+measles.data2<- select(measles.data2,1:26)
+measles.data2<- gather(measles.data2,key=year,value=measles,c(2:26))
 
-scatter.plot <- left_join(dpt.mort,measles.mort)%>%filter(year=="x1990")
+dpt.data2 <- read.csv("dpt/WHS4_100.csv")
+dpt.data2<- select(dpt.data2,1:27)
+dpt.data2 <- gather(dpt.data2,key=year,value=dpt,c(2:27))
 
+gdp.per.capita <- read.csv("gdp_data/gdp.per.capita2.csv")
+gdp.per.capita<- select(gdp.per.capita,c(1,2,35:60))
+gdp.per.capita <- gather(gdp.per.capita,key=year,value=gdp,c(3:28))%>%filter(!is.na(gdp))
+colnames(gdp.per.capita) <- c("Country","Code","year","gdp")
 
+scatter.plot <- left_join(dpt.data2,measles.data2)%>%left_join(gdp.per.capita)%>%left_join(country.wise.mort)
