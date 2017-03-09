@@ -36,9 +36,7 @@ dpt.mort <- dpt.mort %>% gather(key=year2, value=mort, avg.1990, avg.2000, avg.2
 dpt.mort <- dpt.mort %>% filter(!is.na(dpt)&!is.na(mort))
 
 
-View(dpt.mort)
 
 scatter.plot <- left_join(dpt.mort,measles.mort)%>%filter(year=="x1990")
-
 
 
