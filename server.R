@@ -5,6 +5,8 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 library(maps)
+library(stringr)
+
 
 
 server<- function(input,output){
@@ -62,7 +64,7 @@ server<- function(input,output){
   })
   
   output$plot1 <- renderPlotly({
-    plot_ly(selectedData(),x=selectedData()$year2,type="scatter",y=selectedData()$m.data,name="Male",mode="lines+Markers")%>%
+    plot_ly(selectedData(),x=selectedData()$year,type="scatter",y=selectedData()$m.data,name="Male",mode="lines+Markers")%>%
       add_trace(y=selectedData()$f.data,name="Female")%>%
       layout(xaxis=list(title="Year"),
              yaxis=list(title="Mortality Rates"))
@@ -70,19 +72,18 @@ server<- function(input,output){
  
   
   output$dpt <- renderPlot({
-    dpt <- ggplot(data=scatterData(), mapping=aes(x=dpt, y=mort)) + geom_point(mapping=aes(color=gdp)) + geom_smooth() + 
-    labs(title = "Mortality rate vs DPT Vaccination", x = "DPT Vaccination %", y = "Mortality Rate" )
+    dpt <- ggplot(data=scatterData(), mapping=aes(x=dpt, y=mort)) + geom_point() + geom_smooth() + 
+    labs(title = "Mortality Rate vs. DPT Vaccination", x = "DPT Vaccination %", y = "Mortality Rate" )
     return(dpt)
   })
   output$measles <- renderPlot({
-    measles <- ggplot(data=scatterData(), mapping=aes(x=measles, y=mort)) + geom_point(mapping=aes(color=gdp)) + geom_smooth() +
+    measles <- ggplot(data=scatterData(), mapping=aes(x=measles, y=mort)) + geom_point() + geom_smooth() +
     labs(title = "Mortality Rate vs Measles Vaccination", x = "Measles Vaccination %", y = "Mortality Rate")  
     return(measles)
   })
   
   output$scatter3d <- renderPlotly({
-
-    plot_ly(scatterData(),x= (scatterData()$dpt*10),y= (scatterData()$measles*10),z= (scatterData()$mort/10), size=I(2),
+    plot_ly(scatterData(),text=~paste(scatterData()$Country, substr(scatterData()$year, 2, 5)),x= (scatterData()$dpt*10),y= (scatterData()$measles*10),z= (scatterData()$mort/10), size=I(2),
         color=(scatterData()$gdp)^(1/10))%>%
       add_markers()%>%
       layout(scene=list(

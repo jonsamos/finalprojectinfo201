@@ -2,23 +2,24 @@ source("server.R")
 
 
 ui = fluidPage(theme=shinytheme("superhero"),
-  titlePanel("Child Mortality Rates"),
-  h4("Every day, twenty-one children under the age of five die each minute. Although this number has decreased 
+  titlePanel("Child Mortality and Vaccinations"),
+  h4("This report deals with child mortality rates for children under five (U5).  On average, twenty-one children under the age of five die each minute. Although this number has decreased 
     by almost half since 1990, the world still has a long way to go in reducing the rate of child
     mortality. However, two thirds of child deaths are preventable. By giving children vaccines, oral rehydration
     therapy, and improved education in developing countries, many children would be saved at a low cost. Our goal is 
-    to bring awareness to child mortality and what you can do to help prevent the deaths of children throughout the world."),
-  
-  #Random part  
+    to bring awareness to child mortality and what you can do to help prevent the deaths of children throughout the world,
+     as well as the ways that vaccinations have brought down child deaths."),
+  br(),
   sidebarLayout(
     sidebarPanel(
-      h2("Select Values to Effect Visualizations:"),
+      h3(textOutput("result")),
+      br(),
       selectInput("gender","Gender", choices=list("Male", "Female", "Either")),
       selectInput("country2", "Country", choices=countries),
       selectInput("year2", "Year", choices=list(1990,2000,2010,2015))
+      
     ), mainPanel(
-      h3(textOutput("result")),
-      br(),
+      
       h2("Male and Female U5 Mortality Rates:"),
       plotlyOutput("plot1"),
       h5("This line graph shows the child mortality rates for females and males in a given country throughout
@@ -27,15 +28,15 @@ ui = fluidPage(theme=shinytheme("superhero"),
       
     )
   ),
-
+  
   plotOutput ("map"),
   h5("This world map shows the child mortality rate per country in a given year. In 1990, some countries
      had u5 child deaths reach numbers as high as 332 per every 1000 children. However, 
      as the year of the map gets closer to the present, one can see that child mortality overall
-     decreases by a substantial amount."),
+     decreases by a substantial amount.  (Select the year using the dropdown above.)"),
   
   
-  
+  br(),
 
 
 
@@ -46,22 +47,31 @@ ui = fluidPage(theme=shinytheme("superhero"),
      However, the availability of these vaccines in developing countries is still much lower than the availability in developed countries.
      UNICEF has stated that with 1 billion dollars, vaccines could be available for all children in the 72 poorest countries."),
      
-
-  plotlyOutput("scatter3d", height=700, width="100%"),
-  checkboxInput("showall","Show All?",value=TRUE),
-  sliderInput("slider", label="Year", min=1990, max=2015, value=1990),
-
   
+  sidebarLayout(
+    sidebarPanel(
+      checkboxInput("showall","Show All Years?",value=TRUE),
+      sliderInput("slider", label="Year", min=1991, max=2015, value=1990),
+      plotOutput("measles"), 
+      plotOutput("dpt"),
+      h5("These scatter plots show the relationship between Measles/DPT vaccination rates, mortality rates.")
+      
+    ),
+   
+    mainPanel(
+      plotlyOutput("scatter3d", height=700, width="100%"),
+      h5("This 3d scatter plot shows the relationship between measles vaccination rates, DPT vaccination rates, and child mortality rates over various years.
+       Color is used to represent GDP, with lighter colors representing higher GDP.  Selecting Show All Years shows the trend across years.")
+      
+    )
+  ),
+  h4("There is a general trend that shows that in countries that have higher
+  vaccine rates, the mortality rate is lower, and countries with a lower vaccine rate have a higher mortality rate. Also, countries 
+  have a higher income are mostly at the point on the graph where there is a high vaccine rate and a low mortality rate.
+  The high concentration of countries in the lower right hand corner of each graph could be developed countries, 
+  where citizens are more likely to have access to these vaccines and other solutions to child mortality."),
+  br(),
   
-  plotOutput("measles"), 
-  plotOutput("dpt"),
-  
-  h5("These scatter plots show the relationship between Measles/DPT vaccines, mortality rates, and income in each country,
-     from the year 1990 to the year 2015. There is a general trend that shows that in countries that have higher
-     vaccine rates, the mortality rate is lower, and countries with a lower vaccine rate have a higher mortality rate. Also, countries 
-     have a higher income are mostly at the point on the graph where there is a high vaccine rate and a low mortality rate.
-     The high concentration of countries in the lower right hand corner of each graph could be developed countries, 
-     where citizens are more likely to have access to these vaccines and other solutions to child mortality."),
   h2("Conclusion"),
   h4("While child mortality rates have decreased tremendously in the last 25 years, there is more work 
   to be done. Many of these deaths could be completely preventable if the family and community of these
