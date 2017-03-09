@@ -49,3 +49,10 @@ faceted by the years 1990, 2000, and 2010.There is a general trend that shows th
 vaccine rates, the mortality rate is lower, and countries with a lower vaccine rate have a higher mortality rate. The high 
 concentration of countries in the lower right hand corner of each graph could be developed countries, 
 where citizens are more likely to have access to these vaccines and other solutions to child mortality."
+
+"Data shows that access to immunizations lead to fewer under 5 child deaths. This is one reason why child mortality
+is steadily decreasing, as more infants are immunized now than ever before. According to PRB, or the
+Population Reference Bureau, 106 million infants were immunized in 2008. In recent years, developing countries have 
+seen a growth of manufactures of vaccines, allowing for better and easier immunization coverage in these countries.
+However, the availability of these vaccines in developing countries is still much lower than the availability in developed countries.
+UNICEF has stated that with 1 billion dollars, vaccines could be available for all children in the 72 poorest countries."
