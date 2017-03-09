@@ -83,8 +83,8 @@ server<- function(input,output){
         color=(scatterData()$gdp)^(1/10))%>%
       add_markers()%>%
       layout(scene=list(
-        xaxis = list(title="DPT(out of 1000)", width=I(3)),
-        yaxis = list(title="Measles(out of 1000)", width=90),
+        xaxis = list(title="DPT Vaccinations (out of 1000)", width=I(3)),
+        yaxis = list(title="Measles Vaccinations (out of 1000)", width=90),
         zaxis = list(title="Child Mortality %"))
       ) %>% hide_colorbar()
   })

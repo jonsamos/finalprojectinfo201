@@ -54,15 +54,15 @@ ui = fluidPage(theme=shinytheme("superhero"),
      Population Reference Bureau, 106 million infants were immunized in 2008. In recent years, developing countries have 
      seen a growth of manufactures of vaccines, allowing for better and easier immunization coverage in these countries.
      However, the availability of these vaccines in developing countries is still much lower than the availability in developed countries.
-     UNICEF has stated that with 1 billion dollars, vaccines could be available for all children in the 72 poorest countries.")
-  
-  #h4("While child mortality rates have decreased tremendously in the last 25 years, there is more work 
-  #  to be done. Many of these deaths could be completely preventable if the family and community of these
-  # children were given the proper resources. Organizations like World Vision and UNICEF seek to help end child mortality
-  #by working with communities to improve the resources governments give to families and hoispitals, as well as
-  # educating families  to be aware of the signs of diseases and how to prevent them altogether."
-  #)
+     UNICEF has stated that with 1 billion dollars, vaccines could be available for all children in the 72 poorest countries."),
+  h2("Conclusion"),
+  h4("While child mortality rates have decreased tremendously in the last 25 years, there is more work 
+  to be done. Many of these deaths could be completely preventable if the family and community of these
+  children were given the proper resources. Organizations like World Vision and UNICEF seek to help end child mortality
+  by working with communities to improve the resources governments give to families and hoispitals, as well as
+  educating families  to be aware of the signs of diseases and how to prevent them altogether."
+  )
   
 )
 
-shinyApp(ui,server, options=list(height=3000))
+shinyApp(ui,server, options=list(height=3500))
