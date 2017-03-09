@@ -23,18 +23,6 @@ dpt.data <- dpt.data[,cols[c(1,2,7,17,27)]]
 colnames(dpt.data) <- c("Country","x2015","x2010","x2000","x1990")
 dpt.data <- dpt.data[2:195,]
 
-measles.mort <- left_join(measles.data, cleaned.data, by=c("Country"="countries"))
-measles.mort <- measles.mort %>% select(x1990, x2000, x2010,avg.1990,avg.2000,avg.2010)
-measles.mort <- measles.mort %>% gather(key=year, value=measles, x1990, x2000, x2010)
-measles.mort <- measles.mort %>% gather(key=year2, value=mort, avg.1990, avg.2000, avg.2010)
-measles.mort <- measles.mort %>% filter(!is.na(measles)&!is.na(mort))
-
-dpt.mort <- left_join(dpt.data, cleaned.data, by=c("Country"="countries"))
-dpt.mort <- dpt.mort %>% select(x1990, x2000, x2010,avg.1990,avg.2000,avg.2010)
-dpt.mort <- dpt.mort %>% gather(key=year, value=dpt, x1990, x2000, x2010)
-dpt.mort <- dpt.mort %>% gather(key=year2, value=mort, avg.1990, avg.2000, avg.2010)
-dpt.mort <- dpt.mort %>% filter(!is.na(dpt)&!is.na(mort))
-
 country.wise.mort <- read.csv("mort_data/country_wise_mort.csv")
 country.wise.mort <- select(country.wise.mort,c(1,2,35:60))
 country.wise.mort <- gather(country.wise.mort,key=year,value=mort,c(3:28))%>%filter(!is.na(mort))
