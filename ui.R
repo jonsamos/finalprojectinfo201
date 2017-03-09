@@ -1,6 +1,6 @@
 source("server.R")
-
-ui <- fluidPage(
+library(shinythemes)
+ui <- fluidPage(theme = shinytheme("superhero"),
   titlePanel("Child Mortality Rates"),
   h4("Every day, twenty-one children under the age of five die each minute. Although this number has decreased 
     by almost half since 1990, the world still has a long way to go in reducing the rate of child
