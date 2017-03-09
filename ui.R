@@ -8,7 +8,6 @@ ui <- fluidPage(
     therapy, and improved education in developing countries. Our goal is to bring awareness to child mortality
     and what you can do to help prevent the deaths of children throughout the world."),
   
-  
   #Random part  
   sidebarLayout(
     sidebarPanel(
