@@ -40,3 +40,7 @@ dpt.mort <- dpt.mort %>% filter(!is.na(dpt)&!is.na(mort))
 scatter.plot <- left_join(dpt.mort,measles.mort)%>%filter(year=="x1990")
 
 
+
+gdp.per.capita <- read.csv("gdp.per.capita2.csv")
+
+
