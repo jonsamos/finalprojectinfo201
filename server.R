@@ -34,7 +34,7 @@ server<- function(input,output){
   
   
   scatterData <- reactive({
-    return(scatter.plot %>% filter(year==paste0("X", input$slider))) 
+    return(scatter.plot)
   })
   
   mapData <- reactive ({
@@ -61,7 +61,6 @@ server<- function(input,output){
       layout(xaxis=list(title="Year"),
              yaxis=list(title="Mortality Rates"))
   })
-  
  
   scatterData2 <- reactive({
     return(scatterData() %>% filter(year == "X1990" | year=="X2000" | year=="X2010" | year=="X2015"))
@@ -70,6 +69,10 @@ server<- function(input,output){
   output$dpt <- renderPlot({
     dpt <- ggplot(data=scatterData2(), mapping=aes(x=dpt, y=mort)) + geom_point(mapping=aes(color=gdp)) + facet_wrap(~year) + geom_smooth()
     return(dpt)
+  })
+  output$measles <- renderPlot({
+    measles <- ggplot(data=scatterData2(), mapping=aes(x=measles, y=mort)) + geom_point(mapping=aes(color=gdp)) + facet_wrap(~year) + geom_smooth()
+    return(measles)
   })
   
   output$scatter3d <- renderPlotly({
