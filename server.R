@@ -1,6 +1,6 @@
-library(shiny)
 source("finalproject.R")
-
+library(shiny)
+library(shinythemes)
 library(dplyr)
 library(ggplot2)
 library(plotly)
@@ -34,11 +34,13 @@ server<- function(input,output){
   
   
   scatterData <- reactive({
+
     if(input$showall){
       return(scatter.plot)
     }else{
-    return(scatter.plot %>% filter(year==paste0("X", input$slider)))
+      return(scatter.plot %>% filter(year==paste0("X", input$slider)))
     }
+
   })
   
   mapData <- reactive ({
@@ -65,15 +67,15 @@ server<- function(input,output){
       layout(xaxis=list(title="Year"),
              yaxis=list(title="Mortality Rates"))
   })
-  
  
-  scatterData2 <- reactive({
-    return(scatterData() %>% filter(year == "X1990" | year=="X2000" | year=="X2010" | year=="X2015"))
-  })
   
   output$dpt <- renderPlot({
-    dpt <- ggplot(data=scatterData2(), mapping=aes(x=dpt, y=mort)) + geom_point(mapping=aes(color=gdp)) + facet_wrap(~year) + geom_smooth()
+    dpt <- ggplot(data=scatterData(), mapping=aes(x=dpt, y=mort)) + geom_point(mapping=aes(color=gdp)) + geom_smooth()
     return(dpt)
+  })
+  output$measles <- renderPlot({
+    measles <- ggplot(data=scatterData(), mapping=aes(x=measles, y=mort)) + geom_point(mapping=aes(color=gdp)) + geom_smooth()
+    return(measles)
   })
   
   output$scatter3d <- renderPlotly({
@@ -82,9 +84,9 @@ server<- function(input,output){
         color=(scatterData()$gdp)^(1/10))%>%
       add_markers()%>%
       layout(scene=list(
-        xaxis = list(title="DPT(out of 1000)", width=I(3)),
-        yaxis = list(title="Measles(out of 1000)", width=90),
-        zaxis = list(title="Rates(out of 10)"))
+        xaxis = list(title="DPT Vaccinations (out of 1000)", width=I(3)),
+        yaxis = list(title="Measles Vaccinations (out of 1000)", width=90),
+        zaxis = list(title="Child Mortality %"))
       ) %>% hide_colorbar()
   })
 }

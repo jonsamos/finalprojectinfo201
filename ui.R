@@ -1,6 +1,7 @@
 source("server.R")
-library(shinythemes)
-ui <- fluidPage(
+
+
+ui = fluidPage(theme=shinytheme("superhero"),
   titlePanel("Child Mortality Rates"),
   h4("Every day, twenty-one children under the age of five die each minute. Although this number has decreased 
     by almost half since 1990, the world still has a long way to go in reducing the rate of child
@@ -34,15 +35,9 @@ ui <- fluidPage(
      decreases by a substantial amount."),
   
   
-  h4("Data shows that access to immunizations lead to fewer under 5 child deaths. This is one reason why child mortality
-    is steadily decreasing, as more infants are immunized now than ever before. According to PRB, or the
-     Population Reference Bureau, 106 million infants were immunized in 2008. In recent years, developing countries have 
-     seen a growth of manufactures of vaccines, allowing for better and easier immunization coverage in these countries.
-     However, the availability of these vaccines in developing countries is still much lower than the availability in developed countries.
-     UNICEF has stated that with 1 billion dollars, vaccines could be available for all children in the 72 poorest countries."),
-  plotOutput("measles"),
-  plotOutput("dpt"),
-  h6("These six scatter plots show the relationship between Measles/DPT vaccines and mortality rates in each country,
+  
+ 
+  h5("These scatter plots show the relationship between Measles/DPT vaccines and mortality rates in each country,
      faceted by the years 1990, 2000, and 2010. There is a general trend that shows that in countries that have higher
      vaccine rates, the mortality rate is lower, and countries with a lower vaccine rate have a higher mortality rate. The high 
      concentration of countries in the lower right hand corner of each graph could be developed countries, 
@@ -54,15 +49,31 @@ ui <- fluidPage(
 
   plotlyOutput("scatter3d", height=700, width="100%"),
   checkboxInput("showall","Show All?",value=TRUE),
-  sliderInput("slider", label="Year", min=1990, max=2015, value=1990)
-  #h4("While child mortality rates have decreased tremendously in the last 25 years, there is more work 
-   #  to be done. Many of these deaths could be completely preventable if the family and community of these
-    # children were given the proper resources. Organizations like World Vision and UNICEF seek to help end child mortality
-     #by working with communities to improve the resources governments give to families and hoispitals, as well as
-    # educating families  to be aware of the signs of diseases and how to prevent them altogether."
-  #)
+  sliderInput("slider", label="Year", min=1990, max=2015, value=1990),
+
+  
+  
+  plotOutput("measles"), 
+  plotOutput("dpt"),
+  h5("Data shows that access to immunizations lead to fewer under 5 child deaths. This is one reason why child mortality
+     is steadily decreasing, as more infants are immunized now than ever before. According to PRB, or the
+     Population Reference Bureau, 106 million infants were immunized in 2008. In recent years, developing countries have 
+     seen a growth of manufactures of vaccines, allowing for better and easier immunization coverage in these countries.
+     However, the availability of these vaccines in developing countries is still much lower than the availability in developed countries.
+     UNICEF has stated that with 1 billion dollars, vaccines could be available for all children in the 72 poorest countries."),
+  h2("Conclusion"),
+  h4("While child mortality rates have decreased tremendously in the last 25 years, there is more work 
+  to be done. Many of these deaths could be completely preventable if the family and community of these
+  children were given the proper resources. Organizations like World Vision and UNICEF seek to help end child mortality
+  by working with communities to improve the resources governments give to families and hoispitals, as well as
+  educating families  to be aware of the signs of diseases and how to prevent them altogether."
+  )
   
 )
 
+<<<<<<< HEAD
+shinyApp(ui,server, options=list(height=3500))
+=======
 
 shinyApp(ui,server, options=list(height=3000))
+>>>>>>> master
